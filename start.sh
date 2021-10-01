@@ -14,6 +14,8 @@ sudo docker pull dockerhelp/docker-oracle-ee-18c
 sudo docker run -d -p  -it 1521:1521   dockerhelp/docker-oracle-ee-18c bash
 sh post_install.sh
 #sqlplus
+#user: sys as sysdba
+#pass: oracle
 #alter session set "_ORACLE_SCRIPT"=true;
 #create user BASES identified by bases2;
 #grant dba to BASES;
