@@ -12,7 +12,7 @@ CREATE TABLE POKEMON_SPECIE(
     genus             VARCHAR(2000)   NULL,
    
 
-    CONSTRAINT specie_pk PRIMARY KEY(id_specie)
+    CONSTRAINT specie_pk PRIMARY KEY(id_especie)
 );
 
 
@@ -137,7 +137,7 @@ CREATE TABLE POKEMON_LOCATION(
     location_p        INTEGER         NOT NULL,
     pokemon           INTEGER         NOT NULL,
 
-    CONSTRAINT location_pk PRIMARY KEY(location_p,pokemon),
+    CONSTRAINT poke_location_pk PRIMARY KEY(location_p,pokemon),
     CONSTRAINT poke_locl_fk FOREIGN KEY (location_p) REFERENCES LOCATION_P(id_location) on delete cascade,
     CONSTRAINT poke_locp_fk FOREIGN KEY (pokemon) REFERENCES POKEMON(id_pokemon) on delete cascade
 );
@@ -174,7 +174,7 @@ CREATE TABLE POKEMON_MOVE(
     pokemon          INTEGER        NOT NULL,
     
 
-    CONSTRAINT poke_move_pk PRIMARY KEY(region, move_pokemon, method_move, pokemon),
+    CONSTRAINT poke_move_pk PRIMARY KEY(region, move_pokemon, method_move,pokemon),
     CONSTRAINT poke_move_region_fk FOREIGN KEY (region) REFERENCES REGION(id_region) on delete cascade,
     CONSTRAINT poke_move_fk FOREIGN KEY (move_pokemon) REFERENCES MOVEP(id_move) on delete cascade,
     CONSTRAINT poke_move_method_fk FOREIGN KEY (method_move) REFERENCES MOVE_METHOD(id_move_method) on delete cascade,
