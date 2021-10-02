@@ -1,0 +1,16 @@
+drop table POKEMON_MOVE;
+drop table POKEMON_STATS;
+drop table POKEMON_ABILITY;
+drop table POKEMON_LOCATION;
+drop table POKEMON;
+drop table ABILITY;
+drop table LOCATION_P;
+drop table MOVEP;
+drop table TYPE_EFFICACY;
+drop table TYPEMOVE;
+drop table MOVE_METHOD;
+drop table MOVE_EFFECT;
+drop table DAMAGE_CLASS;
+drop table STATS;
+drop table POKEMON_SPECIE;
+drop table REGION;
