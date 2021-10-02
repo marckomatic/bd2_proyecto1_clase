@@ -168,15 +168,14 @@ CREATE TABLE POKEMON_STATS(
 
 
 CREATE TABLE POKEMON_MOVE(
-    level_move       INTEGER        NOT NULL,
+    level_move       INTEGER        NULL,
     region           INTEGER        NULL,
     move_pokemon     INTEGER        NOT NULL,
     method_move      INTEGER        NOT NULL,
     pokemon          INTEGER        NOT NULL,
     
 
-    CONSTRAINT poke_move_pk PRIMARY KEY(region, move_pokemon, method_move,pokemon),
-    CONSTRAINT poke_move_region_fk FOREIGN KEY (region) REFERENCES REGION(id_region) on delete cascade,
+    CONSTRAINT poke_move_pk PRIMARY KEY(move_pokemon, method_move,pokemon),
     CONSTRAINT poke_move_fk FOREIGN KEY (move_pokemon) REFERENCES MOVEP(id_move) on delete cascade,
     CONSTRAINT poke_move_method_fk FOREIGN KEY (method_move) REFERENCES MOVE_METHOD(id_move_method) on delete cascade,
     CONSTRAINT poke_move_pokemon_fk FOREIGN KEY (pokemon) REFERENCES POKEMON(id_pokemon) on delete cascade
