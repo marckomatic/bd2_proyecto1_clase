@@ -14,7 +14,7 @@ CREATE TABLE POKEMON_SPECIE(
 
 
     CONSTRAINT specie_pk PRIMARY KEY(id_especie),
-    CONSTRAINT Pokemonpreevo_fk FOREIGN KEY (id_preevo) REFERENCES POKEMON(id_pokemon) on delete cascade
+    CONSTRAINT Pokemonpreevo_fk FOREIGN KEY (id_preevo) REFERENCES POKEMON_SPECIE(id_especie) on delete cascade
 
 );
 
