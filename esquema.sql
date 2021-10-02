@@ -10,9 +10,12 @@ CREATE TABLE POKEMON_SPECIE(
     id_especie        INTEGER         NOT NULL,
     name_specie       VARCHAR2(300)   NOT NULL,
     genus             VARCHAR(2000)   NULL,
-   
+    id_preevo         INTEGER         NULL,
 
-    CONSTRAINT specie_pk PRIMARY KEY(id_especie)
+
+    CONSTRAINT specie_pk PRIMARY KEY(id_especie),
+    CONSTRAINT Pokemonpreevo_fk FOREIGN KEY (id_preevo) REFERENCES POKEMON(id_pokemon) on delete cascade
+
 );
 
 
@@ -35,7 +38,7 @@ CREATE TABLE DAMAGE_CLASS(
 
 CREATE TABLE MOVE_EFFECT(
     id_move_effect          INTEGER          NOT NULL,
-    effect                  INTEGER          NOT NULL,
+    effect                  VARCHAR2(500)          NOT NULL,
 
     CONSTRAINT move_effect_pk PRIMARY KEY(id_move_effect)
 );
@@ -62,12 +65,12 @@ CREATE TABLE TYPEMOVE(
 
 CREATE TABLE TYPE_EFFICACY(
     damage_factor       INTEGER         NOT NULL,
-    type1               INTEGER         NOT NULL,
-    type2               INTEGER         NOT NULL,
+    damage_type         INTEGER         NOT NULL,
+    target_type         INTEGER         NOT NULL,
 
-    CONSTRAINT type_efficacy_pk PRIMARY KEY(type1,type2),
-    CONSTRAINT type1_fk FOREIGN KEY (type1) REFERENCES TYPEMOVE(id_type) on delete cascade,
-    CONSTRAINT type2_fk FOREIGN KEY (type2) REFERENCES TYPEMOVE(id_type) on delete cascade
+    CONSTRAINT type_efficacy_pk PRIMARY KEY(damage_type,target_type),
+    CONSTRAINT damage_type_fk FOREIGN KEY (damage_type) REFERENCES TYPEMOVE(id_type) on delete cascade,
+    CONSTRAINT target_type_fk FOREIGN KEY (target_type) REFERENCES TYPEMOVE(id_type) on delete cascade
 );
 -- ----------------------------------
 CREATE TABLE MOVEP(
@@ -76,7 +79,7 @@ CREATE TABLE MOVEP(
     priority_move         INTEGER         NOT NULL,
     power_move            INTEGER         NULL, 
     pp                    INTEGER         NULL,
-    accurancy             INTEGER         NULL,
+    accuracy              INTEGER         NULL,
     effect_chance         INTEGER         NULL,
     type_move             INTEGER         NOT NULL,
     region                INTEGER         NOT NULL,
@@ -120,12 +123,10 @@ CREATE TABLE POKEMON(
     base_exp            INTEGER         NOT NULL,
     order_p             INTEGER         NOT NULL,
     specie              INTEGER         NULL,
-    id_preevo           INTEGER         NULL,
     
     
     CONSTRAINT pokemon_pk PRIMARY KEY(id_pokemon),
-    CONSTRAINT Pokemonspecie_fk FOREIGN KEY (specie) REFERENCES POKEMON_SPECIE(id_especie) on delete cascade,
-    CONSTRAINT Pokemonpreevo_fk FOREIGN KEY (id_preevo) REFERENCES POKEMON(id_pokemon) on delete cascade
+    CONSTRAINT Pokemonspecie_fk FOREIGN KEY (specie) REFERENCES POKEMON_SPECIE(id_especie) on delete cascade
     
 );
 
@@ -168,7 +169,7 @@ CREATE TABLE POKEMON_STATS(
 
 CREATE TABLE POKEMON_MOVE(
     level_move       INTEGER        NOT NULL,
-    region           INTEGER        NOT NULL,
+    region           INTEGER        NULL,
     move_pokemon     INTEGER        NOT NULL,
     method_move      INTEGER        NOT NULL,
     pokemon          INTEGER        NOT NULL,
